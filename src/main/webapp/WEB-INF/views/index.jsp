@@ -101,6 +101,92 @@
 	
 	<script type="text/javascript">
 		const firstGrid = new ax5.ui.grid();
+		
+		//setting formatter
+		
+		//formatter : number & editor : money 
+		ax5.ui.grid.formatter["number"] = function(){
+			let num = this.value;
+			return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+		
+		//formatter : select 의 CD 값이 value로 표현되는 것을 변환
+// 		ax5.ui.grid.formatter["select"] = function(){
+// 			if(this.value == "indvd") return "개인";
+// 			else if(this.value == "grp") return "단체";
+// 			else return this.value;
+// 		}
+		
+		//setGrid
+// 		function gridInit(){
+// 			//setConfig
+// 			dataGrid.setConfig({
+// 				target: $('[data-ax5grid="data-grid"]'),
+// 				columns: [
+// 					{key: "unitNm", label: "기관"},
+// 					{label: "일정", 
+// 						columns:[
+// 							{key: "ethrmDt", label: "입실(시작일)"},
+// 							{key: "lthrmDt", label: "퇴실(종료일)"}
+// 						]
+// 					},
+// 					{key: "bsnssTypeNm", label: "사업별 구분"},
+// 					{key: "nofprTypeNm", label: "개인/단체", formatter: "select",
+// 						editor: {
+// 							type:"select", config: {
+// 								columnKeys:{
+// 									optionValue: "CD", optionText: "NM"
+// 								},
+// 								options: [
+// 									{CD: "indvd", NM : "개인"},
+// 									{CD: "grp", NM : "단체"}
+// 								]
+// 							}
+// 						}
+// 					},
+// 					{key: "grpNm", label: "단체명"},
+// 					{key: "cstmrNm", label: "고객명"},
+// 					{key: "netNofprCnt", label: "이용인원(명)", formatter: "number"},
+// 					{label: "성별(명)",
+// 						columns:[
+// 							{key: "mNofprCnt", label: "남", formatter: "number"},
+// 							{key: "fNofprCnt", label: "여", formatter: "number"}
+// 						]
+// 					},
+// 					{label: "연령(명)",
+// 						columns:[
+// 							{key: "nofpr0Cnt", label: "10대 미만", formatter: "number"},
+// 							{key: "nofpr10Cnt", label: "10대", formatter: "number"},
+// 							{key: "nofpr20Cnt", label: "20대", formatter: "number"},
+// 							{key: "nofpr30Cnt", label: "30대", formatter: "number"},
+// 							{key: "nofpr40Cnt", label: "40대", formatter: "number"},
+// 							{key: "nofpr50Cnt", label: "50대", formatter: "number"},
+// 							{key: "nofpr60Cnt", label: "60대 이상", formatter: "number"}
+// 						]
+// 					},
+// 					{key: "cstmrAddr", label: "지역(주소)"},
+// 					{label: "연락처",
+// 						columns:[
+// 							{key: "cstmrCbleTlno", label: "유선전화"},
+// 							{key: "cstmrWrlssTlno", label: "무선전화"},
+// 							{key: "cstmrEmail", label: "전자우편"}
+// 						]
+// 					},
+// 					{label: "이용실태",
+// 						columns:[
+// 							{key: "useCntNm", label: "이용횟수", formatter: "number"},
+// 							{key: "infoAcqstPathNm", label: "정보취득경로"},
+// 							{key: "usePrpsNm", label: "이용목적"},
+// 							{key: "tfcmnNm", label: "교통수단"},
+// 							{key: "chcWhyNm", label: "시설선택사유"}
+// 						]
+// 					}
+// 				],
+// 				showLineNumber: true,
+// 				lineNumberColumnWidth: 40,
+// 				header: {align: "center"},
+// 				body: {align: "center"}
+// 			});
 	
 		$(document).ready(function(){
 			$('[data-grid-control]').click(function(){
