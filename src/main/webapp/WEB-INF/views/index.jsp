@@ -309,6 +309,7 @@
 					
 					for(var i = 1; i < data.length; i++){
 						for(var j = 0; j < data[i].length; j++){
+// 							dataList[i] = Object.fromEntries([[data[i][j].key, data[i][j].content]]);
 							dataList[i][data[i][j].key] = data[i][j].content;
 						}
 					}
