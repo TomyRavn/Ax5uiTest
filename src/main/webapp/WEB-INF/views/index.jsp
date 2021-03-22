@@ -21,6 +21,7 @@
 	<script type="text/javascript" src="/resources/ax5ui/dist/ax5select.min.js"></script>
 	<script type="text/javascript" src="/resources/ax5ui/dist/ax5ui.all.min.js"></script>
 	<script type="text/javascript" src="/resources/sheetJS/dist/xlsx.full.min.js"></script>
+	<script type="text/javascript" src="/resources/fileSaver/dist/FileSaver.min.js"></script>
 	
 	<style>
 		table{
@@ -95,6 +96,8 @@
     				<button class="btn" data-grid-control="column-update">column 수정</button>
     			</div>
 			</div>
+			
+			<table id="gridTable" style="display:none;"></table>
 		</div>
 	</div>
 	
@@ -392,7 +395,32 @@
 	
 		
 		function downloadExcel(){
-			firstGrid.exportExcel("grid-to-excel.xls");
+			//1. ax5ui export Excel
+// 			firstGrid.exportExcel("grid-to-excel.xls");	//ax5ui 기본 export
+
+			//2. Sheet JS export Excel
+			var gridTableHtml = firstGrid.exportExcel();	//인자를 적어주지 않으면, table 태그 export
+			
+			$('#gridTable').html(gridTableHtml);
+			
+			var wb = XLSX.utils.table_to_book(document.getElementById('gridTable'), {sheet:"sheet1", raw:true});
+			XLSX.writeFile(wb, ('test.xlsx'));
+			
+			//3. Sheet JS Demo export Excel
+// 			var wb = XLSX.utils.table_to_sheet( gridTable );
+// 			wb.SheetNames.push("Test Sheet2");
+// 			wb.Sheets["Test Sheet2"] = ws2;
+			
+// 			var wbout = XLSX.write(wb, {bookType:'xlsx', bookSST:true, type:'binary'});
+			
+// 			function s2ab(s){
+// 				var buf = new ArrayBuffer(s.length);
+// 				var view = new Uint8Array(buf);
+// 				for(var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+// 				return buf;
+// 			}
+			
+// 			saveAs(new Blob([s2ab(wbout)], {type:"application/octet-stream"}), "test.xlsx");
 		}
  		
 		//setConfig 예제
