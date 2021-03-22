@@ -75,7 +75,7 @@
 					<h2>- 파일 미리보기 -</h2>
 				</div>
 				
-				<button type="button" style="float:right;">Download</button>
+				<button type="button" style="float:right;" onclick="downloadExcel()">Download</button>
 				
 				<br/><br/>
 				
@@ -256,19 +256,19 @@
 // 					configArr[5].formatter = "test";
 
 					//컬럼 에디터 설정(추후 java에서 셀을 판별 후 넣어줄 예정)
-					configArr[0].editor = {type:"text"};
-					configArr[1].editor = {type:"text"};
-					configArr[2].editor = {type:"text"};
-					configArr[3].editor = {type:"text"};
-					configArr[5].editor = {type:"money"};
-					configArr[6].editor = {type:"text"};
-					configArr[7].editor = {type:"checkbox"};
-					configArr[8].editor = {type:"checkbox"};
-					configArr[9].editor = {type:"text"};
-					configArr[10].editor = {type:"text"};
-					configArr[11].editor = {type:"date"};
-					configArr[12].editor = {type:"textarea"};
-					configArr[13].editor = {type:"textarea"};
+// 					configArr[0].editor = {type:"text"};
+// 					configArr[1].editor = {type:"text"};
+// 					configArr[2].editor = {type:"text"};
+// 					configArr[3].editor = {type:"text"};
+// 					configArr[5].editor = {type:"money"};
+// 					configArr[6].editor = {type:"text"};
+// 					configArr[7].editor = {type:"checkbox"};
+// 					configArr[8].editor = {type:"checkbox"};
+// 					configArr[9].editor = {type:"text"};
+// 					configArr[10].editor = {type:"text"};
+// 					configArr[11].editor = {type:"date"};
+// 					configArr[12].editor = {type:"textarea"};
+// 					configArr[13].editor = {type:"textarea"};
 
 					//컬럼 분할
 					delete configArr[4].key;	//delete 하지 않을 시 멀티 라인
@@ -390,6 +390,10 @@
 			});
 		}  
 	
+		
+		function downloadExcel(){
+			firstGrid.exportExcel("grid-to-excel.xls");
+		}
  		
 		//setConfig 예제
 // 		const configList = [{key : "a", label : "조성년도"}, {key : "b", label : "사업명"}];
